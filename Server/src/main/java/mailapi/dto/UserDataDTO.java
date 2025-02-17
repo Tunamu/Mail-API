@@ -6,7 +6,7 @@ public class UserDataDTO {
     private String DtoEmail;
     private String DtoPassword;
 
-    UserDataDTO(String DtoUserName, String DtoUserSurname, String DtoEmail, String DtoPassword) {
+    public UserDataDTO(String DtoUserName, String DtoUserSurname, String DtoEmail, String DtoPassword) {
         this.DtoUserName = DtoUserName;
         this.DtoUserSurname = DtoUserSurname;
         this.DtoEmail = DtoEmail;

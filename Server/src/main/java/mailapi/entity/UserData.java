@@ -1,23 +1,33 @@
 package mailapi.entity;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+
+@Entity
+@SequenceGenerator(name = "user_seq", sequenceName = "userdata_seq", allocationSize = 1)
+@Table(name = "userdata", schema = "data")
 public class UserData {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    private Integer userid;
+    @Getter
     @Setter
     private String username;
     @Setter
-    private String userSurname;
+    private String usersurname;
     @Setter
-    private String programEmail;
+    private String useremail;
     @Setter
-    private String password;
+    private String userpassword;
 
-    UserData(String userName, String userSurname, String programEmail, String password) {
+    public UserData(String userName, String userSurname, String programEmail, String password) {
         this.username = userName;
-        this.userSurname = userSurname;
-        this.programEmail = programEmail;
-        this.password = password;
+        this.usersurname = userSurname;
+        this.useremail = programEmail;
+        this.userpassword = password;
     }
 
     public String getUsername() {
@@ -25,16 +35,18 @@ public class UserData {
     }
 
     public String getUserSurname() {
-        return userSurname;
+        return usersurname;
     }
 
     public String getProgramEmail() {
-        return programEmail;
+        return useremail;
     }
 
     public String getPassword() {
-        return password;
+        return userpassword;
     }
 
-    UserData(){};
+    public UserData() {
+
+    }
 }
