@@ -41,9 +41,15 @@ public class MailService {
     }
 
     public void sendNewMail(MailDataDTO mailDataDTO){
-        Date date = new Date();
-        MailData mailData = new MailData(mailDataDTO.getDTOMailFrom(),mailDataDTO.getDTOMailTo(),date.toString(),mailDataDTO.getDTOMailHeader(),mailDataDTO.getDTOMailTopic(),mailDataDTO.getDTOMailDescription());
-        mailRepository.save(mailData);
+        if(userRepository.isAnyEmail(mailDataDTO.getDTOMailFrom())&& userRepository.isAnyEmail(mailDataDTO.getDTOMailTo())){
+            Date date = new Date();
+            MailData mailData = new MailData(mailDataDTO.getDTOMailFrom(),mailDataDTO.getDTOMailTo(),date.toString(),mailDataDTO.getDTOMailHeader(),mailDataDTO.getDTOMailTopic(),mailDataDTO.getDTOMailDescription());
+            mailRepository.save(mailData);
+
+            System.out.println("New mail sent!");
+        }else{
+            System.out.println("Error! Incorrect sender or receiver adress!");
+        }
     }
 
 }

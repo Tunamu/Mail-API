@@ -15,10 +15,10 @@ public class MailData {
     private Integer mail_id;
     @Getter
     @Setter
-    private String sender_user_email_adress;
+    private String sender_user_mail_adress;
     @Getter
     @Setter
-    private String receiver_user_email_adress;
+    private String receiver_user_mail_adress;
     @Getter
     @Setter
     private String mail_send_date;
@@ -33,8 +33,8 @@ public class MailData {
     private String mail_data_description;
 
     public MailData(String senderEmail,String receiverEmail,String mailDate,String mailHeader,String mailTopic,String mailDescription) {
-        this.sender_user_email_adress = senderEmail;
-        this.receiver_user_email_adress = receiverEmail;
+        this.sender_user_mail_adress = senderEmail;
+        this.receiver_user_mail_adress = receiverEmail;
         this.mail_send_date = mailDate;
         this.mail_data_header = mailHeader;
         this.mail_data_topic = mailTopic;
