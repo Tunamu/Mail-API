@@ -6,22 +6,31 @@ import mailapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class MailService {
     @Autowired
     UserRepository userRepository;
 
     public void saveUser(UserDataDTO userDataDTO){
-        UserData userData = new UserData(userDataDTO.getDtoUserName(),userDataDTO.getDtoUserSurname(),userDataDTO.getDtoEmail(),userDataDTO.getDtoPassword());
-        userRepository.save(userData);
-        System.out.println("User saved!");
+        if(!userRepository.isAnyEmail(userDataDTO.getDtoEmail())){
+            Date date = new Date();
+            UserData userData = new UserData(userDataDTO.getDtoUserName(),userDataDTO.getDtoUserSurname(),userDataDTO.getDtoEmail(),userDataDTO.getDtoPassword(), date.toString());
+            userRepository.save(userData);
+
+            System.out.println("User saved!");
+        }else{
+            System.out.println("User with this email already exists!");
+        }
     }
 
-    public void isAnyUserWithThisEmail(String userEmail ) {
-        if(userRepository.isAnyEmail(userEmail)){
-            System.out.println("User with this email already exists!");
+    //burası boolean olacak normalde
+    public void loginAuthenticator(UserDataDTO userDataDTO){
+        if(userRepository.userAuthenticated(userDataDTO.getDtoEmail(), userDataDTO.getDtoPassword())){
+            System.out.println("User authenticated!");
         }else{
-            System.out.println("User with this email is not exists!");
+            System.out.println("User NOT authenticated!");
         }
 
     }

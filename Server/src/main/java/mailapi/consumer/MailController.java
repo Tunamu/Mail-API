@@ -4,7 +4,6 @@ package mailapi.consumer;
 import mailapi.dto.UserDataDTO;
 import mailapi.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,8 +23,9 @@ public class MailController {
         mailService.saveUser(userDataDTO);
     }
 
-    @GetMapping("/search-user")
-    public void searchUser(@RequestParam String email){
-        mailService.isAnyUserWithThisEmail(email);
+    @GetMapping("/login-auth")
+    public void loginAuth(@RequestParam String email, @RequestParam String password){
+        UserDataDTO userDataDTOForLogin = new UserDataDTO(email, password);
+        mailService.loginAuthenticator(userDataDTOForLogin);
     }
 }

@@ -12,38 +12,45 @@ public class UserData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-    private Integer userid;
+    private Integer user_id;
     @Getter
     @Setter
-    private String username;
+    private String user_name;
     @Setter
-    private String usersurname;
+    private String user_surname;
     @Setter
-    private String useremail;
+    private String user_email;
     @Setter
-    private String userpassword;
+    private String user_password;
+    @Setter
+    private String user_create_date;
 
-    public UserData(String userName, String userSurname, String programEmail, String password) {
-        this.username = userName;
-        this.usersurname = userSurname;
-        this.useremail = programEmail;
-        this.userpassword = password;
+    public UserData(String userName, String userSurname, String programEmail, String password, String programDate) {
+        this.user_name = userName;
+        this.user_surname = userSurname;
+        this.user_email = programEmail;
+        this.user_password = password;
+        this.user_create_date = programDate;
     }
 
     public String getUsername() {
-        return username;
+        return user_name;
     }
 
     public String getUserSurname() {
-        return usersurname;
+        return user_surname;
     }
 
     public String getProgramEmail() {
-        return useremail;
+        return user_email;
     }
 
     public String getPassword() {
-        return userpassword;
+        return user_password;
+    }
+
+    public String getProgramDate() {
+        return user_create_date;
     }
 
     public UserData() {

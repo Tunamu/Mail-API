@@ -13,6 +13,11 @@ public class UserDataDTO {
         this.DtoPassword = DtoPassword;
     }
 
+    public UserDataDTO(String userName, String userPassword) {
+        this.DtoUserName = userName;
+        this.DtoUserSurname = userPassword;
+    }
+
     public String getDtoUserName() {
         return DtoUserName;
     }
