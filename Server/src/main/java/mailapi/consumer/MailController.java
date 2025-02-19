@@ -1,6 +1,7 @@
 package mailapi.consumer;
 
 
+import mailapi.dto.MailDataDTO;
 import mailapi.dto.UserDataDTO;
 import mailapi.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,17 @@ public class MailController {
     public void loginAuth(@RequestParam String email, @RequestParam String password){
         UserDataDTO userDataDTOForLogin = new UserDataDTO(email, password);
         mailService.loginAuthenticator(userDataDTOForLogin);
+    }
+
+    @PostMapping("/send-mail")
+    public void sendMail(@RequestParam String senderMailAdress, @RequestParam String receiverMailAdress, @RequestParam String mailHeader, @RequestParam String mailTopic , @RequestParam String mailDescription){
+        MailDataDTO mailDataDTO = new MailDataDTO(
+                senderMailAdress,
+                receiverMailAdress,
+                mailHeader,
+                mailTopic,
+                mailDescription
+        );
+        mailService.sendNewMail(mailDataDTO);
     }
 }

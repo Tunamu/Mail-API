@@ -1,7 +1,10 @@
 package mailapi.service;
 
+import mailapi.dto.MailDataDTO;
 import mailapi.dto.UserDataDTO;
+import mailapi.entity.MailData;
 import mailapi.entity.UserData;
+import mailapi.repository.MailRepository;
 import mailapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,8 @@ import java.util.Date;
 public class MailService {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    MailRepository mailRepository;
 
     public void saveUser(UserDataDTO userDataDTO){
         if(!userRepository.isAnyEmail(userDataDTO.getDtoEmail())){
@@ -34,4 +39,11 @@ public class MailService {
         }
 
     }
+
+    public void sendNewMail(MailDataDTO mailDataDTO){
+        Date date = new Date();
+        MailData mailData = new MailData(mailDataDTO.getDTOMailFrom(),mailDataDTO.getDTOMailTo(),date.toString(),mailDataDTO.getDTOMailHeader(),mailDataDTO.getDTOMailTopic(),mailDataDTO.getDTOMailDescription());
+        mailRepository.save(mailData);
+    }
+
 }
