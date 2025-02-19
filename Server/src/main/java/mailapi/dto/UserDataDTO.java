@@ -14,8 +14,8 @@ public class UserDataDTO {
     }
 
     public UserDataDTO(String userName, String userPassword) {
-        this.DtoUserName = userName;
-        this.DtoUserSurname = userPassword;
+        this.DtoEmail = userName;
+        this.DtoPassword = userPassword;
     }
 
     public String getDtoUserName() {

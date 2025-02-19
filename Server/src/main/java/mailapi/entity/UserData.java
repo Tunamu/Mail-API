@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Entity
 @SequenceGenerator(name = "user_seq", sequenceName = "userdata_seq", allocationSize = 1)
-@Table(name = "userdata", schema = "data")
+@Table(name = "user_data", schema = "data")
 public class UserData {
 
     @Id
