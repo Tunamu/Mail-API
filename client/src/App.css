@@ -1,63 +1,53 @@
-.App{
+.App {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.switchButton{
+.switchButton {
     margin: 50px 0px 20px 0px;
-    padding: 0px;
     display: flex;
-    border-radius: 25px;
+    align-items: center;
+    justify-content: space-between; /* Yazıları eşit aralıklı yerleştir */
+    position: relative;
+    width: 200px;
+    height: 50px;
     background-color: antiquewhite;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    overflow: hidden; /* Taşmaları önlemek için */
 }
 
-.login-btn , .signup-btn{
-    margin: 0px;
+/* Login ve SignUp metinleri */
+.login-btn ,.signup-btn {
+    width: 100px;  /* Her biri 100px olacak */
+    text-align: center;
+    z-index: 2; /* Yazılar en üstte olacak */
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+}
+
+/* Arka plan hareketi için */
+.active-part {
+    background-color: aqua;
+    position: absolute;
     width: 100px;
     height: 50px;
     border-radius: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    transition: transform 0.5s ease-in-out;
+    z-index: 1;
 }
 
-.active-part {
-    background-color: aqua;
+/* Login için başlangıç konumu */
+.move-left {
+    transform: translateX(0);
 }
 
-.login-btn, .active-part{
-    animation-name: move-to-right;
-    animation-duration: 0.5s;
+/* SignUp için sağa kayma efekti */
+.move-right {
+    transform: translateX(90px);
 }
-
-.signup-btn, .active-part{
-    animation-name: move-to-left;
-    animation-duration: 0.5s;
-}
-
-@keyframes move-to-left {
-    0% {
-        margin-right: 20px;
-    }
-
-    100% {
-        margin-right: 0px;
-    }
-}
-@keyframes move-to-right {
-    0% {
-        margin-left: 20px;
-    }
-
-    100% {
-        margin-left: 0px;
-    }
-}
-
-
-
-
-
-
-
