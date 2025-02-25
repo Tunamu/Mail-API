@@ -1,21 +1,25 @@
+import {useEffect, useState} from 'react'
 import './App.css';
+import LogInPage from './LogInPage';
+import SignInPage from './SignInPage';
 
 function App() {
+  const[isSignIn,setIsSignIn] = useState(false);
+  const[pageLoader,setPageLoader] = useState(<LogInPage/>)
+
+  useEffect(()=>{
+    if(isSignIn){
+      setPageLoader(<SignInPage/>);
+    }else{
+      setPageLoader(<LogInPage/>);
+    }
+  },[isSignIn])
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={()=>setIsSignIn(!isSignIn)}>Change</button>
+      {pageLoader}
     </div>
   );
 }
