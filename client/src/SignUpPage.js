@@ -1,6 +1,6 @@
 
 
-function SignInPage() {
+function SignUpPage() {
 
   return (
     <div className="App">
@@ -10,4 +10,4 @@ function SignInPage() {
   );
 }
 
-export default SignInPage;
+export default SignUpPage;
