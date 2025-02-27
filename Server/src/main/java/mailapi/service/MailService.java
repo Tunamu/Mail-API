@@ -31,12 +31,14 @@ public class MailService {
     }
 
     //burası boolean olacak normalde
-    public void loginAuthenticator(UserDataDTO userDataDTO){
+    public boolean loginAuthenticator(UserDataDTO userDataDTO){
         if(userRepository.userAuthenticated(userDataDTO.getDtoEmail(), userDataDTO.getDtoPassword())){
             System.out.println("User authenticated!");
+            return true;
         }else{
             System.out.println("User NOT authenticated!");
         }
+        return false;
 
     }
 

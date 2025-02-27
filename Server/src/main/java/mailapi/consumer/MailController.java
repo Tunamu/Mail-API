@@ -7,6 +7,7 @@ import mailapi.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/custom-mail-api")
 public class MailController {
@@ -25,9 +26,9 @@ public class MailController {
     }
 
     @GetMapping("/login-auth")
-    public void loginAuth(@RequestParam String email, @RequestParam String password){
+    public boolean loginAuth(@RequestParam String email, @RequestParam String password){
         UserDataDTO userDataDTOForLogin = new UserDataDTO(email, password);
-        mailService.loginAuthenticator(userDataDTOForLogin);
+        return mailService.loginAuthenticator(userDataDTOForLogin);
     }
 
     @PostMapping("/send-mail")
