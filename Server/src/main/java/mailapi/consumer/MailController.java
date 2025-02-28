@@ -3,9 +3,12 @@ package mailapi.consumer;
 
 import mailapi.dto.MailDataDTO;
 import mailapi.dto.UserDataDTO;
+import mailapi.entity.MailData;
 import mailapi.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -46,5 +49,10 @@ public class MailController {
                 mailDescription
         );
         mailService.sendNewMail(mailDataDTO);
+    }
+
+    @GetMapping("/get-all-mails")
+    public List<MailDataDTO> getAllMails(@RequestParam String email){
+        return mailService.getAllMailsFromThisUserMail(email);
     }
 }

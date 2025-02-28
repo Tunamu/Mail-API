@@ -16,9 +16,9 @@
     margin-left: 40px;
 }
 
-.Log-Out-Button, .New-Mail-Button{
+.Log-Out-Button, .New-Mail-Button, .Reload-Button{
     width: 120px;
-    margin-right: 40px;
+    margin-right: 20px;
     font-size: 16px;
     height: auto;
     font-weight: bold;
@@ -28,7 +28,7 @@
     padding: 5px 0px 5px 0px;
 }
 
-.Log-Out-Button:hover, .New-Mail-Button:hover{
+.Log-Out-Button:hover, .New-Mail-Button:hover, .Reload-Button:hover{
     background-color: rgb(183, 171, 155);
 }
 
@@ -40,7 +40,7 @@
 
 .Table-Header{
     display: flex;
-    align-items: center;
+    align-items:center;
 }
 
 .Table-Header h2{

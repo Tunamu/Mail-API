@@ -1,4 +1,5 @@
 .MailListPropt{
+    width: 100%;
     background-color: antiquewhite;
     display:flex;
     text-align: left;
