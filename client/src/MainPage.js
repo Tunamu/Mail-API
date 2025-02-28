@@ -14,6 +14,7 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
     }
 
     function reloadMails(){
+        console.log("reload!");
         const requestOptions = {
             method: "GET",
             redirect: "follow"
@@ -27,6 +28,13 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
 
     useEffect(()=>{
         reloadMails();
+
+        // setInterval ile her 30 saniyede bir API çağrısı yap
+        const interval = setInterval(reloadMails, 15000);
+
+        // Component unmount olduğunda interval'ı temizle
+        return () => clearInterval(interval);
+
     },[])
 
     return (
