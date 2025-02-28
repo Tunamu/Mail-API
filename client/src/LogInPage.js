@@ -45,12 +45,18 @@ function LogInPage({ setEmail, setUserName }) {
       .catch((error) => console.error(error));
   }
 
+  const loginTriggerFunc = (event) => {
+    if (event.key === 'Enter') {
+      handleLogin();
+    }
+  };
+
   return (
     <div className="LogPage">
       <h2>Login</h2>
       {errorMessage && <p>{errorMessage}</p>}
-      <input type="email" onChange={(e) => setInputEmail(e.target.value)} placeholder="Email" />
-      <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+      <input type="email" onChange={(e) => setInputEmail(e.target.value)} onKeyDown={loginTriggerFunc} placeholder="Email" />
+      <input type="password" onChange={(e) => setPassword(e.target.value)} onKeyDown={loginTriggerFunc} placeholder="Password" />
       <button className="Submit-Buttons" onClick={handleLogin}>Login</button>
     </div>
   );

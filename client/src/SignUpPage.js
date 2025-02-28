@@ -67,25 +67,29 @@ function SignUpPage({setEmail ,setUserName}) {
             console.error("Login error:", error);
             setErrorMessage("Server error. Please contact admin.");
           });
-
           
-
       }
 
   }
+
+  const signupTriggerFunc = (event) => {
+    if (event.key === 'Enter') {
+      SignUpFunc();
+    }
+  };
 
   return (
     <div className="LogPage">
       <h2>SignUp</h2>
       {errorMessage && <p>{errorMessage}</p>}
-      <input type="name" onChange={(e) => setInputName(e.target.value)} placeholder="Name" />
-      <input type="surname" onChange={(e) => setInputSurname(e.target.value)} placeholder="Surname" />
+      <input type="name" onChange={(e) => setInputName(e.target.value)} placeholder="Name" onKeyDown={signupTriggerFunc}/>
+      <input type="surname" onChange={(e) => setInputSurname(e.target.value)} placeholder="Surname" onKeyDown={signupTriggerFunc}/>
       <div className='Email-Create-Part'>
-        <input type="email" onChange={(e) => setInputEmail(e.target.value)} placeholder="Email" className='Sign-Email' />
+        <input type="email" onChange={(e) => setInputEmail(e.target.value)} placeholder="Email" className='Sign-Email' onKeyDown={signupTriggerFunc}/>
         <p className='Email-Completer'>@yippee.com</p>
       </div>
-      <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-      <input type="password" onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" />
+      <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password"onKeyDown={signupTriggerFunc} />
+      <input type="password" onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" onKeyDown={signupTriggerFunc}/>
       <button className="Submit-Buttons" onClick={SignUpFunc}>SignUp</button>
     </div>
   );
