@@ -27,6 +27,22 @@ function SignUpPage({setEmail ,setUserName}) {
       return;
     }
 
+    const hasNumber = /\d/;  // regex for checing numbers
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/;  // regex for checing special characters
+
+    if(password.length<8 || password.length>50){
+      setErrorMessage("Password lenght must be between 8 and 50 characters.");
+      return;
+    } 
+    if(!hasNumber.test(password)){
+      setErrorMessage("Password must have least 1 number.");
+      return;
+    } 
+    if(!hasSpecialChar.test(password)){
+      setErrorMessage("Password must have least 1 special character.");
+      return;
+    }
+
     const fullEmail = (inputEmail.toLowerCase)+"@yippee.com"
 
     const requestOptions = {
