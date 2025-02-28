@@ -11,14 +11,14 @@ function LogInPage({ setEmail, setUserName }) {
       return;
     }
 
-    // API isteğini oluştur
+
     fetch(`http://localhost:8080/custom-mail-api/login-auth?email=${(inputEmail.toLowerCase())}&password=${password}`)
-      .then((response) => response.json()) // JSON olarak yanıtı işle
+      .then((response) => response.json()) 
       .then((data) => {
         if (data === true) {
           getUserName(inputEmail);
-          localStorage.setItem("email", inputEmail); // localStorage'a kaydet
-          setEmail(inputEmail); // App.js içindeki state'i güncelle
+          localStorage.setItem("email", inputEmail); 
+          setEmail(inputEmail); 
         } else {
           setErrorMessage("Email or password is wrong!");
         }
@@ -29,17 +29,18 @@ function LogInPage({ setEmail, setUserName }) {
       });
   }
 
-  function getUserName({email}){
+  function getUserName(email){
     const requestOptions = {
       method: "GET",
       redirect: "follow"
     };
       
     fetch(`http://localhost:8080/custom-mail-api/get-user-name?email=${email}`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        localStorage.setItem("name",result);
-        setUserName(result);
+      .then((response) => response.text())
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("name",data);
+        setUserName(data);
       })
       .catch((error) => console.error(error));
   }
