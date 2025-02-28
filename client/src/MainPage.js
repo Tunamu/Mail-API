@@ -1,3 +1,4 @@
+import MailListPropt from "./MailListPropt";
 import "./MainPage.css";
 
 function MainPage( { setEmail ,userName ,setUserName} ) {
@@ -21,7 +22,18 @@ function MainPage( { setEmail ,userName ,setUserName} ) {
                     <button className="New-Mail-Button">+ New Mail</button>
                 </div>
                 <div className="Mails-Section">
-                    loreaşakmbaemaşmevşam
+                    <MailListPropt/>
+                    <MailListPropt/>
+                    <MailListPropt/>
+                    <MailListPropt/>
+                    <MailListPropt/>
+                    <MailListPropt/>
+                    <MailListPropt/>
+                    <MailListPropt/>
+                    <MailListPropt/>
+                    <MailListPropt/>
+                    <MailListPropt/>
+                    <MailListPropt/>
                 </div>
             </div>
         </div>

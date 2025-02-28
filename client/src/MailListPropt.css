@@ -1,0 +1,46 @@
+.MailListPropt{
+    background-color: antiquewhite;
+    display:flex;
+    text-align: left;
+    flex-direction: column;
+    border: 2px solid rgb(183, 171, 155);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.MailListPropt:hover{
+    background-color: rgba(183, 171, 155, 0.4);
+}
+
+.MailListPropt * {
+    margin: 0px;
+    padding: 0px;
+}
+
+.Mail-Name{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.Topic-And-From{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: end;
+}
+
+.Mail-Topic{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.Mail-From{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.Mail-Text{
+    margin-top: 10px;
+}
