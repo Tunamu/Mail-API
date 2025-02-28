@@ -10,10 +10,55 @@ function SignUpPage({setEmail}) {
   const [errorMessage, setErrorMessage] = useState("");
 
   function SignUpFunc(){
+    let IsAnyOther = false;
+
+    if (!inputName ||  !inputSurname || !inputEmail || !password || !confirmPassword) {
+      setErrorMessage("One of the field or fields are empty.");
+      return;
+    }
+
     if(password!=confirmPassword){
       setErrorMessage("Password and Confirm Password are not match. Try Again");
       return;
     }
+
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow"
+    };
+    
+    fetch(`http://localhost:8080/custom-mail-api/is-any-user-with-this-email?email=${inputEmail}`, requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data === true) {
+          setErrorMessage("Email is already in use.");
+          IsAnyOther = true;
+        } 
+      })
+      .catch((error) => {
+        console.error("Login error:", error);
+        setErrorMessage("Server error. Please contact admin.");
+      });
+
+      if(!IsAnyOther){
+        const requestOptions = {
+          method: "POST",
+          redirect: "follow"
+        };
+        
+        fetch(`http://localhost:8080/custom-mail-api/save-user?name=${inputName}&surname=${inputSurname}&email=${inputEmail}&password=${password}`, requestOptions)
+          .then((response) => response.json())
+          .then((data)=> console.log(data))
+          .catch((error) => {
+            console.error("Login error:", error);
+            setErrorMessage("Server error. Please contact admin.");
+          });
+
+          localStorage.setItem("email", inputEmail); 
+          setEmail(inputEmail); 
+
+      }
+
   }
 
   return (

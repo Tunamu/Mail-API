@@ -14,9 +14,9 @@ public class MailController {
     @Autowired
     MailService mailService;
 
-    @GetMapping("/a")
-    public void a(){
-        System.out.println("a");
+    @GetMapping("/is-any-user-with-this-email")
+    public boolean isAnyUserWithThisEmail(@RequestParam String email){
+        return mailService.isAnyUserWithThisEmail(email);
     }
 
     @PostMapping("/save-user")

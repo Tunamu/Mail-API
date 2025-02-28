@@ -18,6 +18,9 @@ public class MailService {
     @Autowired
     MailRepository mailRepository;
 
+    public boolean isAnyUserWithThisEmail(String email) {
+        return userRepository.isAnyEmail(email);
+    }
     public void saveUser(UserDataDTO userDataDTO){
         if(!userRepository.isAnyEmail(userDataDTO.getDtoEmail())){
             Date date = new Date();
