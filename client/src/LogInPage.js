@@ -7,7 +7,7 @@ function LogInPage({ setEmail }) {
 
   function handleLogin() {
     if (!inputEmail || !password) {
-      setErrorMessage("Lütfen email ve şifre girin.");
+      setErrorMessage("Email or password is empty.");
       return;
     }
 
@@ -19,22 +19,22 @@ function LogInPage({ setEmail }) {
           localStorage.setItem("email", inputEmail); // localStorage'a kaydet
           setEmail(inputEmail); // App.js içindeki state'i güncelle
         } else {
-          setErrorMessage("Email veya şifre hatalı.");
+          setErrorMessage("Email or password is wrong!");
         }
       })
       .catch((error) => {
         console.error("Login error:", error);
-        setErrorMessage("Giriş yapılamadı. Lütfen tekrar deneyin.");
+        setErrorMessage("Server error. Please contact admin.");
       });
   }
 
   return (
-    <div>
-      <h2>Login Page</h2>
+    <div className="LogPage">
+      <h2>Login</h2>
       {errorMessage && <p>{errorMessage}</p>}
       <input type="email" onChange={(e) => setInputEmail(e.target.value)} placeholder="Email" />
       <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-      <button onClick={handleLogin}>Login</button>
+      <button className="Submit-Buttons" onClick={handleLogin}>Login</button>
     </div>
   );
 }
