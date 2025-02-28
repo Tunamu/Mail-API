@@ -4,18 +4,23 @@ import LogPage from "./LogPage";
 import MainPage from "./MainPage";
 
 function App() {
-  var emailFromUser = localStorage.getItem("email");
-  const[isAnyEmail,setIsAnyEmail] = useState(false);
+  const [email, setEmail] = useState(localStorage.getItem("email") || "");
 
-  useEffect(()=>{
-    if(emailFromUser!=""){
-      setIsAnyEmail(true);
-    }
-  },[emailFromUser])
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setEmail(localStorage.getItem("email") || ""); 
+    };
+
+    window.addEventListener("storage", handleStorageChange); 
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   return (
     <div className="App">
-        {isAnyEmail? <MainPage/> : <LogPage/>}
+      {email ? <MainPage setEmail={setEmail} /> : <LogPage setEmail={setEmail} />}
     </div>
   );
 }

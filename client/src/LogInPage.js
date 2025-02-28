@@ -1,45 +1,40 @@
-import {useEffect, useState} from 'react';
+import { useState } from "react";
 
-function LogInPage() {
-  const[email, setEmail ] = useState("");
-  const[password , setPassword] = useState("");
-  const[resultValue, setResultValue] = useState(false);
-  const [upper , setUpper ] = useState("");
+function LogInPage({ setEmail }) {
+  const [inputEmail, setInputEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-
-  useEffect(()=>{
-    if(resultValue){
-      localStorage.setItem("email",email);
+  function handleLogin() {
+    if (!inputEmail || !password) {
+      setErrorMessage("Lütfen email ve şifre girin.");
+      return;
     }
-  },[resultValue]);
 
-  function loginAuthFunc(email,password){
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow"
-    };
-    
-    fetch(`http://localhost:8080/custom-mail-api/login-auth?email=${email}&password=${password}`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        if(result){
-          setUpper("");
-        }else{
-          setUpper("Email or password is incorrect");
+    // API isteğini oluştur
+    fetch(`http://localhost:8080/custom-mail-api/login-auth?email=${inputEmail}&password=${password}`)
+      .then((response) => response.json()) // JSON olarak yanıtı işle
+      .then((data) => {
+        if (data === true) {
+          localStorage.setItem("email", inputEmail); // localStorage'a kaydet
+          setEmail(inputEmail); // App.js içindeki state'i güncelle
+        } else {
+          setErrorMessage("Email veya şifre hatalı.");
         }
-        setResultValue(result);
       })
-      .catch((error) => console.error(error));
-
+      .catch((error) => {
+        console.error("Login error:", error);
+        setErrorMessage("Giriş yapılamadı. Lütfen tekrar deneyin.");
+      });
   }
 
   return (
-    <div className="App">
-      <p>{upper}</p>
-      LOGIN PAGE
-      <input onChange={(element)=>setEmail(element.target.value)} placeholder="E-mail adress"/>
-      <input onChange={(element)=> setPassword(element.target.value)} placeholder="Password"/>
-      <button onClick={()=>loginAuthFunc(email,password)}>Login</button>
+    <div>
+      <h2>Login Page</h2>
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+      <input type="email" onChange={(e) => setInputEmail(e.target.value)} placeholder="Email" />
+      <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 }

@@ -1,12 +1,17 @@
 import "./MainPage.css";
 
-function MainPage() {
+function MainPage( { setEmail } ) {
+
+    function handleLogout() {
+      localStorage.removeItem("email"); // localStorage'dan email'i sil
+      setEmail(""); // App.js içindeki state'i temizle
+    }
 
     return (
-    <div className="MainPage">
-        Hello
-        <button onClick={localStorage.setItem("email","")}>Press to reload</button>    
-    </div>
+        <div>
+            <h2>Welcome to Home Page</h2>
+            <button onClick={handleLogout}>Logout</button>
+        </div>
     );
 }
 

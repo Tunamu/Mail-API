@@ -3,7 +3,7 @@ import "./LogPage.css";
 import LogInPage from "./LogInPage";
 import SignUpPage from "./SignUpPage";
 
-function LogPage() {
+function LogPage({ setEmail }) {
     const [isSignIn, setIsSignIn] = useState(false);
 
     return (
@@ -13,11 +13,10 @@ function LogPage() {
             <p className="login-btn">Login</p>
             <p className="signup-btn">SignUp</p>
         </button>
-
-        {/* Koşullu render ile sayfa değiştir */}
-        {isSignIn ? <SignUpPage /> : <LogInPage />}
-    </div>     
+        {isSignIn ? <SignUpPage setEmail={setEmail} /> : <LogInPage setEmail={setEmail} />}
+    </div>
     );
+
 }
 
 export default LogPage;
