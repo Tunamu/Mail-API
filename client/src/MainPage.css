@@ -1,7 +1,7 @@
 .MainPage{
     margin: 30px;
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 .Main-Top-Part{
@@ -34,8 +34,8 @@
 
 .Main-Table-Section{
     margin: 60px 80px 20px 80px;
-    min-height: 80vh;
     border-radius: 10px;
+    height: 100%;
 }
 
 .Table-Header{
@@ -55,5 +55,9 @@
 }
 
 .Mails-Section{
-    margin: 20px 10px;
+    margin-top: 20px;
+    height: auto;
+    border: 2px solid rgb(183, 171, 155);
+    padding: 10px;
+    border-radius:10px 10px 0px 0px;
 }
