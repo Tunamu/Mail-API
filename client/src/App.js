@@ -6,6 +6,7 @@ import logoImage from './img/logo.png'
 
 function App() {
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
+  const [userName, setUserName] = useState(localStorage.getItem("name") || "");
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -25,7 +26,7 @@ function App() {
         <img src={logoImage} className="Logo-Photo"/>
         <p className="Top-Text">yippee.com - a basic mail application.</p>
       </div>
-      {email ? <MainPage setEmail={setEmail} /> : <LogPage setEmail={setEmail} />}
+      {email ? <MainPage setEmail={setEmail} userName={userName} /> : <LogPage setEmail={setEmail} setUserName={setUserName} />}
     </div>
   );
 }

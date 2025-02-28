@@ -31,6 +31,11 @@ public class MailController {
         return mailService.loginAuthenticator(userDataDTOForLogin);
     }
 
+    @GetMapping("/get-user-name")
+    public String getUserName(@RequestParam String email){
+        return mailService.getUserWithEmail(email);
+    }
+
     @PostMapping("/send-mail")
     public void sendMail(@RequestParam String senderMailAdress, @RequestParam String receiverMailAdress, @RequestParam String mailHeader, @RequestParam String mailTopic , @RequestParam String mailDescription){
         MailDataDTO mailDataDTO = new MailDataDTO(

@@ -14,4 +14,6 @@ public interface UserRepository extends JpaRepository<UserData,Integer> {
     @Query("SELECT count(u)>0 FROM UserData u where  u.user_email = :userEmail and u.user_password = :userPassword")
     boolean userAuthenticated(@Param("userEmail")  String email, @Param("userPassword")  String password);
 
+    @Query("SELECT u.user_name FROM UserData u where u.user_email = :userEmail")
+    String getNameByEmail(@Param("userEmail") String email);
 }

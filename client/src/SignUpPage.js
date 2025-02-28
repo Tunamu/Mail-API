@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './SignUp.css'
 
-function SignUpPage({setEmail}) {
+function SignUpPage({setEmail ,setUserName}) {
   const [inputName, setInputName] = useState("");
   const [inputSurname, setInputSurname] = useState("");
   const [inputEmail, setInputEmail] = useState("");
@@ -59,6 +59,8 @@ function SignUpPage({setEmail}) {
             if(data===true){
               localStorage.setItem("email", fullEmail); 
               setEmail(fullEmail);    
+              localStorage.setItem("name", inputName);
+              setUserName(inputName);
             }
           })
           .catch((error) => {

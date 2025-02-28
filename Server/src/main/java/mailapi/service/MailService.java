@@ -47,6 +47,10 @@ public class MailService {
 
     }
 
+    public String getUserWithEmail(String email){
+        return userRepository.getNameByEmail(email);
+    }
+
     public void sendNewMail(MailDataDTO mailDataDTO){
         if(userRepository.isAnyEmail(mailDataDTO.getDTOMailFrom())&& userRepository.isAnyEmail(mailDataDTO.getDTOMailTo())){
             Date date = new Date();

@@ -1,6 +1,6 @@
 import "./MainPage.css";
 
-function MainPage( { setEmail } ) {
+function MainPage( { setEmail ,userName} ) {
 
     function handleLogout() {
       localStorage.removeItem("email"); // localStorage'dan email'i sil
@@ -9,7 +9,7 @@ function MainPage( { setEmail } ) {
 
     return (
         <div>
-            <h2>Welcome to Home Page</h2>
+            <h2>Welcome {userName}!</h2>
             <button onClick={handleLogout}>Logout</button>
         </div>
     );
