@@ -31,7 +31,7 @@ function LogInPage({ setEmail }) {
   return (
     <div>
       <h2>Login Page</h2>
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
       <input type="email" onChange={(e) => setInputEmail(e.target.value)} placeholder="Email" />
       <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
       <button onClick={handleLogin}>Login</button>
