@@ -20,9 +20,9 @@ public class MailController {
     }
 
     @PostMapping("/save-user")
-    public void saveUser(@RequestParam String name , @RequestParam String surname, @RequestParam String email, @RequestParam String password) {
+    public boolean saveUser(@RequestParam String name , @RequestParam String surname, @RequestParam String email, @RequestParam String password) {
         UserDataDTO userDataDTO = new UserDataDTO(name,surname,email,password);
-        mailService.saveUser(userDataDTO);
+        return mailService.saveUser(userDataDTO);
     }
 
     @GetMapping("/login-auth")

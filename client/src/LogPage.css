@@ -53,6 +53,7 @@
 }
 
 input{
+    box-sizing: border-box;
     width: 300px;
     height: auto;
     font-size: 20px;

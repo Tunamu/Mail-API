@@ -17,17 +17,24 @@ function SignUpPage({setEmail}) {
       return;
     }
 
+    if(inputEmail.includes("@")){
+      setErrorMessage("Email can not have @ symbol!");
+      return;
+    }
+
     if(password!=confirmPassword){
       setErrorMessage("Password and Confirm Password are not match. Try Again");
       return;
     }
+
+    const fullEmail = inputEmail+"@yippi.com"
 
     const requestOptions = {
       method: "GET",
       redirect: "follow"
     };
     
-    fetch(`http://localhost:8080/custom-mail-api/is-any-user-with-this-email?email=${inputEmail}`, requestOptions)
+    fetch(`http://localhost:8080/custom-mail-api/is-any-user-with-this-email?email=${fullEmail}`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         if (data === true) {
@@ -46,16 +53,20 @@ function SignUpPage({setEmail}) {
           redirect: "follow"
         };
         
-        fetch(`http://localhost:8080/custom-mail-api/save-user?name=${inputName}&surname=${inputSurname}&email=${inputEmail}&password=${password}`, requestOptions)
+        fetch(`http://localhost:8080/custom-mail-api/save-user?name=${inputName}&surname=${inputSurname}&email=${fullEmail}&password=${password}`, requestOptions)
           .then((response) => response.json())
-          .then((data)=> console.log(data))
+          .then((data)=>{
+            if(data===true){
+              localStorage.setItem("email", fullEmail); 
+              setEmail(fullEmail);    
+            }
+          })
           .catch((error) => {
             console.error("Login error:", error);
             setErrorMessage("Server error. Please contact admin.");
           });
 
-          localStorage.setItem("email", inputEmail); 
-          setEmail(inputEmail); 
+          
 
       }
 
@@ -67,7 +78,10 @@ function SignUpPage({setEmail}) {
       {errorMessage && <p>{errorMessage}</p>}
       <input type="name" onChange={(e) => setInputName(e.target.value)} placeholder="Name" />
       <input type="surname" onChange={(e) => setInputSurname(e.target.value)} placeholder="Surname" />
-      <input type="email" onChange={(e) => setInputEmail(e.target.value)} placeholder="Email" />
+      <div className='Email-Create-Part'>
+        <input type="email" onChange={(e) => setInputEmail(e.target.value)} placeholder="Email" className='Sign-Email' />
+        <p className='Email-Completer'>@yippi.com</p>
+      </div>
       <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
       <input type="password" onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" />
       <button className="Submit-Buttons" onClick={SignUpFunc}>SignUp</button>

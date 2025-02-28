@@ -1,0 +1,21 @@
+.Email-Create-Part{
+    width: 300px;
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Sign-Email{
+    margin: 0px;
+    width: 100%;
+    height: auto;
+}
+
+
+.Email-Completer{
+    font-size: 20px;
+    font-weight: bold;
+    height: fit-content;
+    margin: 0;
+}

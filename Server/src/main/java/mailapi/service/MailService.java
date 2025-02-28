@@ -21,15 +21,17 @@ public class MailService {
     public boolean isAnyUserWithThisEmail(String email) {
         return userRepository.isAnyEmail(email);
     }
-    public void saveUser(UserDataDTO userDataDTO){
+    public boolean saveUser(UserDataDTO userDataDTO){
         if(!userRepository.isAnyEmail(userDataDTO.getDtoEmail())){
             Date date = new Date();
             UserData userData = new UserData(userDataDTO.getDtoUserName(),userDataDTO.getDtoUserSurname(),userDataDTO.getDtoEmail(),userDataDTO.getDtoPassword(), date.toString());
             userRepository.save(userData);
 
             System.out.println("User saved!");
+            return true;
         }else{
             System.out.println("User with this email already exists!");
+            return false;
         }
     }
 
