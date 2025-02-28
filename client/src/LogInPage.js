@@ -12,7 +12,7 @@ function LogInPage({ setEmail }) {
     }
 
     // API isteğini oluştur
-    fetch(`http://localhost:8080/custom-mail-api/login-auth?email=${inputEmail}&password=${password}`)
+    fetch(`http://localhost:8080/custom-mail-api/login-auth?email=${inputEmail.toLowerCase}&password=${password}`)
       .then((response) => response.json()) // JSON olarak yanıtı işle
       .then((data) => {
         if (data === true) {

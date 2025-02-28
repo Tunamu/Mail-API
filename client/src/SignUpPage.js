@@ -27,7 +27,7 @@ function SignUpPage({setEmail}) {
       return;
     }
 
-    const fullEmail = inputEmail+"@yippi.com"
+    const fullEmail = (inputEmail.toLowerCase)+"@yippee.com"
 
     const requestOptions = {
       method: "GET",
@@ -80,7 +80,7 @@ function SignUpPage({setEmail}) {
       <input type="surname" onChange={(e) => setInputSurname(e.target.value)} placeholder="Surname" />
       <div className='Email-Create-Part'>
         <input type="email" onChange={(e) => setInputEmail(e.target.value)} placeholder="Email" className='Sign-Email' />
-        <p className='Email-Completer'>@yippi.com</p>
+        <p className='Email-Completer'>@yippee.com</p>
       </div>
       <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
       <input type="password" onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" />
