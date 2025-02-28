@@ -1,0 +1,59 @@
+.MainPage{
+    margin: 30px;
+    width: 100%;
+    height: auto;
+}
+
+.Main-Top-Part{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Main-Top-Part h2{
+    margin: 0px;
+    margin-left: 40px;
+}
+
+.Log-Out-Button, .New-Mail-Button{
+    width: 120px;
+    margin-right: 40px;
+    font-size: 16px;
+    height: auto;
+    font-weight: bold;
+    background-color: antiquewhite;
+    border: 2px solid rgb(183, 171, 155);
+    border-radius: 10px;
+    padding: 5px 0px 5px 0px;
+}
+
+.Log-Out-Button:hover, .New-Mail-Button:hover{
+    background-color: rgb(183, 171, 155);
+}
+
+.Main-Table-Section{
+    margin: 60px 80px 20px 80px;
+    min-height: 80vh;
+    border-radius: 10px;
+}
+
+.Table-Header{
+    display: flex;
+    align-items: center;
+}
+
+.Table-Header h2{
+    margin: 0px;
+}
+
+.New-Mail-Button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.Mails-Section{
+    margin: 20px 10px;
+}

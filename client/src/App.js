@@ -26,7 +26,7 @@ function App() {
         <img src={logoImage} className="Logo-Photo"/>
         <p className="Top-Text">yippee.com - a basic mail application.</p>
       </div>
-      {email ? <MainPage setEmail={setEmail} userName={userName} /> : <LogPage setEmail={setEmail} setUserName={setUserName} />}
+      {email ? <MainPage setEmail={setEmail} userName={userName} setUserName={setUserName}/> : <LogPage setEmail={setEmail} setUserName={setUserName} />}
     </div>
   );
 }

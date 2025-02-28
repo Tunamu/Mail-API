@@ -1,16 +1,29 @@
 import "./MainPage.css";
 
-function MainPage( { setEmail ,userName} ) {
+function MainPage( { setEmail ,userName ,setUserName} ) {
 
     function handleLogout() {
-      localStorage.removeItem("email"); // localStorage'dan email'i sil
-      setEmail(""); // App.js içindeki state'i temizle
+        localStorage.removeItem("email");
+        setEmail(""); 
+        localStorage.removeItem("name");
+        setUserName("");
     }
 
     return (
-        <div>
-            <h2>Welcome {userName}!</h2>
-            <button onClick={handleLogout}>Logout</button>
+        <div className="MainPage">
+            <div className="Main-Top-Part">
+                <h2>Welcome {userName}!</h2>
+                <button onClick={handleLogout} className="Log-Out-Button">Logout</button>
+            </div>
+            <div className="Main-Table-Section">
+                <div className="Table-Header">
+                    <h2>My Mail</h2>
+                    <button className="New-Mail-Button">+ New Mail</button>
+                </div>
+                <div className="Mails-Section">
+                    loreaşakmbaemaşmevşam
+                </div>
+            </div>
         </div>
     );
 }
