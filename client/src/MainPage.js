@@ -30,7 +30,7 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
 
         }else{
 
-            fetch("http://localhost:8080/custom-mail-api/get-all-sending-mails?email=tunamus@yippee.com", requestOptions)
+            fetch(`http://localhost:8080/custom-mail-api/get-all-sending-mails?email=${email}`, requestOptions)
                 .then((response) => response.json())
                 .then((result) => setMailList(result))
                 .catch((error) => console.error(error));
@@ -58,10 +58,8 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
     useEffect(()=>{
         reloadMails();
 
-        // setInterval ile her 30 saniyede bir API çağrısı yap
         const interval = setInterval(reloadMails, 15000);
 
-        // Component unmount olduğunda interval'ı temizle
         return () => clearInterval(interval);
 
     },[])

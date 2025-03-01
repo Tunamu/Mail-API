@@ -39,16 +39,18 @@ function SignUpPage({setEmail ,setUserName}) {
       return;
     } 
     if(!hasSpecialChar.test(password)){
-      setErrorMessage("Password must have least 1 special character.");
+      setErrorMessage("Password must not have special character.");
       return;
     }
 
-    const fullEmail = (inputEmail.toLowerCase)+"@yippee.com"
+    const fullEmail = inputEmail.toLowerCase()+'@yippee.com';
 
     const requestOptions = {
       method: "GET",
       redirect: "follow"
     };
+
+    console.log(fullEmail);
     
     fetch(`http://localhost:8080/custom-mail-api/is-any-user-with-this-email?email=${fullEmail}`, requestOptions)
       .then((response) => response.json())
@@ -60,7 +62,7 @@ function SignUpPage({setEmail ,setUserName}) {
       })
       .catch((error) => {
         console.error("Login error:", error);
-        setErrorMessage("Server error. Please contact admin.");
+        setErrorMessage("Server error 1. Please contact admin.");
       });
 
       if(!IsAnyOther){
@@ -81,7 +83,7 @@ function SignUpPage({setEmail ,setUserName}) {
           })
           .catch((error) => {
             console.error("Login error:", error);
-            setErrorMessage("Server error. Please contact admin.");
+            setErrorMessage("Server error 2. Please contact admin.");
           });
           
       }
