@@ -55,6 +55,7 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
                         MailHeader={mail.dtomailHeader} 
                         MailTopic={mail.dtomailTopic} 
                         MailFrom={mail.dtomailFrom} 
+                        MailDate = {mail.dtomailDate}
                         MailText={mail.dtomailDescription}/>
                     ))}
                 </div>
