@@ -9,7 +9,7 @@ function MailListPropt({MailHeader, MailTopic,MailFrom,MailText, MailDate}) {
                 <div className="Topic-And-From">
                     <p className="Mail-Topic">{MailTopic}</p>
                     <p className="Mail-From">- From: {MailFrom}</p>
-                    <p className="Mail-Date">{MailDate}</p>
+                    <p className="Mail-Date"> - At: {MailDate}</p>
                 </div>
             </div>
             <p className="Mail-Text">

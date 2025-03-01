@@ -37,6 +37,23 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
 
     },[])
 
+    const formatDate = (unformattedDate) => {
+
+        const dateObj = new Date(unformattedDate.replace("CET", "GMT"));
+    
+        if (isNaN(dateObj.getTime())) return "Invalid Date"; 
+    
+        const options = { weekday: "short", month: "short", day: "2-digit" };
+        const formattedDate = dateObj.toLocaleDateString("en-US", options);
+        const formattedTime = dateObj.toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+        });
+    
+        return `${formattedTime} - ${formattedDate}`;
+    };
+
     return (
         <div className="MainPage">
             <div className="Main-Top-Part">
@@ -55,7 +72,7 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
                         MailHeader={mail.dtomailHeader} 
                         MailTopic={mail.dtomailTopic} 
                         MailFrom={mail.dtomailFrom} 
-                        MailDate = {mail.dtomailDate}
+                        MailDate = {formatDate(mail.dtomailDate)}
                         MailText={mail.dtomailDescription}/>
                     ))}
                 </div>
