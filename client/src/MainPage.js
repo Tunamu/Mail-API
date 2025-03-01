@@ -87,7 +87,7 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
                 <div className="Mails-Section">
                     {mailList.map((mail)=>(
                         <MailListPropt 
-                        key={mail.dtomailHeader}
+                        
                         isMyMails= {isMyMails}
                         MailHeader={mail.dtomailHeader} 
                         MailTopic={mail.dtomailTopic} 
