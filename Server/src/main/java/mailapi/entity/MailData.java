@@ -2,41 +2,67 @@ package mailapi.entity;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Entity
 @SequenceGenerator(name = "mail_seq", sequenceName = "maildata_seq", allocationSize = 1)
 @Table(name = "mail_data", schema = "data")
 public class MailData {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mail_seq")
-    private Integer mail_id;
+    private Integer mailId;
     @Setter
-    private String sender_user_mail_adress;
+    private String senderUserMailAdress;
     @Setter
-    private String receiver_user_mail_adress;
+    private String receiverUserMailAdress;
     @Setter
-    private String mail_send_date;
+    private String mailSendDate;
     @Setter
-    private String mail_data_header;
+    private String mailDataHeader;
     @Setter
-    private String mail_data_topic;
+    private String mailDataTopic;
     @Setter
-    private String mail_data_description;
+    private String mailDataDescription;
 
     public MailData(String senderEmail,String receiverEmail,String mailDate,String mailHeader,String mailTopic,String mailDescription) {
-        this.sender_user_mail_adress = senderEmail;
-        this.receiver_user_mail_adress = receiverEmail;
-        this.mail_send_date = mailDate;
-        this.mail_data_header = mailHeader;
-        this.mail_data_topic = mailTopic;
-        this.mail_data_description = mailDescription;
+        this.senderUserMailAdress = senderEmail;
+        this.receiverUserMailAdress = receiverEmail;
+        this.mailSendDate = mailDate;
+        this.mailDataHeader = mailHeader;
+        this.mailDataTopic = mailTopic;
+        this.mailDataDescription = mailDescription;
     }
 
     public MailData(){
 
+    }
+
+    public Integer getMailId() {
+        return mailId;
+    }
+
+    public String getSenderUserMailAdress() {
+        return senderUserMailAdress;
+    }
+
+    public String getReceiverUserMailAdress() {
+        return receiverUserMailAdress;
+    }
+
+    public String getMailSendDate() {
+        return mailSendDate;
+    }
+
+    public String getMailDataHeader() {
+        return mailDataHeader;
+    }
+
+    public String getMailDataTopic() {
+        return mailDataTopic;
+    }
+
+    public String getMailDataDescription() {
+        return mailDataDescription;
     }
 
 }

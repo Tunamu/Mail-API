@@ -9,6 +9,7 @@ import mailapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -49,7 +50,8 @@ public class MailService {
     }
 
     public String getUserWithEmail(String email){
-        return userRepository.getNameByEmail(email);
+        UserData tempUserData =  userRepository.findByuserEmail(email);
+        return (tempUserData.getUserName());
     }
 
     public void sendNewMail(MailDataDTO mailDataDTO){
@@ -65,7 +67,12 @@ public class MailService {
     }
 
     public List<MailDataDTO> getAllMailsFromThisUserMail(String email){
-        return mailRepository.getAllMailsFromEmail(email);
+        List<MailData> tempMailData = mailRepository.findAllByReceiverUserMailAdressOrderByMailSendDateDesc(email);
+        List<MailDataDTO> mailDataDTOList = new ArrayList<>();
+        for(MailData mailData : tempMailData){
+            mailDataDTOList.add(new MailDataDTO(mailData.getSenderUserMailAdress(),mailData.getReceiverUserMailAdress(),mailData.getMailSendDate(),mailData.getMailDataHeader(),mailData.getMailDataTopic(),mailData.getMailDataDescription()));
+        }
+        return mailDataDTOList;
     }
 
 }

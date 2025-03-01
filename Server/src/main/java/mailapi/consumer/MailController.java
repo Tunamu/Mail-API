@@ -3,7 +3,6 @@ package mailapi.consumer;
 
 import mailapi.dto.MailDataDTO;
 import mailapi.dto.UserDataDTO;
-import mailapi.entity.MailData;
 import mailapi.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
