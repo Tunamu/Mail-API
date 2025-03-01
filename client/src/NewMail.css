@@ -17,4 +17,72 @@
     height: 500px;
     box-sizing: border-box;
     background-color:rgb(183, 171, 155);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.Top-Line{
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Exit-Button{
+    height: auto;
+    width: 50px;
+    font-size: 28px;
+    font-weight: bold;
+    border: 0px;
+    border-radius: 25px;
+    background-color:antiquewhite;
+}
+
+.Exit-Button:hover, .Mail-Send-Button:hover{
+    background-color: rgba(250, 235, 215, 0.75);
+}
+
+.New-Mail-Header{
+    height: auto;
+    font-size: 28px;
+    width: 75%;
+    margin: 0;
+}
+
+.New-Mail-Receiver-Mail-Adress, .New-Mail-Topic, .New-Mail-Text{
+    margin-top: 10px;
+    width: 100%;
+}
+
+.New-Mail-Receiver-Mail-Adress{
+    font-size: 20px;
+}
+
+.New-Mail-Topic{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.New-Mail-Text{
+    box-sizing: border-box;
+    background-color: antiquewhite;
+    border-radius: 5px;
+    border: 0px;
+    padding: 5px;
+    font-size: 16px;
+    resize: none;
+    height: 250px;
+}
+
+.Mail-Send-Button{
+    margin: 20px auto 0px auto;
+    width: 50%;
+    height: 50px;
+    border-radius: 10px;
+    border: 0px;
+    background-color: antiquewhite;
+    font-size: 24px;
+    font-weight: bold;
 }
