@@ -8,7 +8,7 @@ function NewMail({setNewMessage, mailSenderAdress}) {
     const[sendNewMailTopic ,setSendNewMailTopic] = useState("");
     const[sendNewMailText ,setSendNewMailText] = useState("");
 
-    function sendNewMail(){
+    async function sendNewMail(){
         if(!sendNewMailHeader){
             console.log("Must need header");
             return;
@@ -23,18 +23,25 @@ function NewMail({setNewMessage, mailSenderAdress}) {
             redirect: "follow"
         };
         
-        fetch(`http://localhost:8080/custom-mail-api/is-any-user-with-this-email?email=${sendNewMailReceiverAdress}`, requestOptionsForMailTester)
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                if (data === false) {
-                    console.log("Must need a valid email adress");
-                    return;
-                } 
-            })
-            .catch((error) => {
-                console.error("Server error:", error);
-            });
+        try {
+            // fetch işlemini await ile bekliyoruz
+            const response = await fetch(
+                `http://localhost:8080/custom-mail-api/is-any-user-with-this-email?email=${sendNewMailReceiverAdress}`,
+                requestOptionsForMailTester
+            );
+            const data = await response.json();
+            console.log("Mail validation response:", data);
+
+            // Eğer e-posta geçersizse fonksiyonu durduruyoruz
+            if (!data) {
+                console.log("Must need a valid email address");
+                return;
+            }
+        } catch (error) {
+            console.error("Server error:", error);
+            return;
+        }
+
 
         const requestOptionForSendMail = {
             method: "POST",
@@ -42,13 +49,19 @@ function NewMail({setNewMessage, mailSenderAdress}) {
         };
 
         console.log("Valid mail propts!!!!!!");
-        setNewMessage(false);
         
-        //fetch(`http://localhost:8080/custom-mail-api/send-mail?senderMailAdress=${mailSenderAdress}&receiverMailAdress=${sendNewMailReceiverAdress}&mailHeader=${sendNewMailHeader}&mailTopic=${sendNewMailTopic}}&mailDescription=${sendNewMailText}`, requestOptionsForSendMail)
-        //    .then((response) => response.text())
-        //    .then((result) => console.log(result))
-        //    .catch((error) => console.error(error));
+        try {
+            const response = await fetch(
+                `http://localhost:8080/custom-mail-api/send-mail?senderMailAdress=${mailSenderAdress}&receiverMailAdress=${sendNewMailReceiverAdress}&mailHeader=${sendNewMailHeader}&mailTopic=${sendNewMailTopic}&mailDescription=${sendNewMailText}`,
+                requestOptionForSendMail
+            );
+            const result = await response.text();
+            console.log(result);
+        } catch (error) {
+            console.error(error);
+        }
 
+        setNewMessage(false);
         //burada ekran kapanacak ve gönderildi diyem mesaj düşecek
 
     }
