@@ -10,4 +10,6 @@ import java.util.List;
 public interface MailRepository extends JpaRepository<MailData,Integer> {
 
     List<MailData> findAllByReceiverUserMailAdressOrderByMailSendDateDesc(String receiverMail);
+
+    List<MailData> findAllBySenderUserMailAdressOrderByMailSendDateDesc(String senderMail);
 }

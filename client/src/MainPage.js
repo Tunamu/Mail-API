@@ -5,6 +5,7 @@ import "./MainPage.css";
 function MainPage( { email ,setEmail ,userName ,setUserName} ) {
 
     const[mailList,setMailList] = useState([]);
+    const[isMyMails , setIsMyMails] = useState(false);
 
     function handleLogout() {
         localStorage.removeItem("email");
@@ -14,16 +15,44 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
     }
 
     function reloadMails(){
-        console.log("reload!");
+
         const requestOptions = {
             method: "GET",
             redirect: "follow"
         };
-        
-        fetch(`http://localhost:8080/custom-mail-api/get-all-mails?email=${email}`, requestOptions)
-            .then((response) => response.json())
-            .then((result) => setMailList(result))
-            .catch((error) => console.error(error));
+
+        if(!isMyMails){
+            
+            fetch(`http://localhost:8080/custom-mail-api/get-all-receiving-mails?email=${email}`, requestOptions)
+                .then((response) => response.json())
+                .then((result) => setMailList(result))
+                .catch((error) => console.error(error));
+
+        }else{
+
+            fetch("http://localhost:8080/custom-mail-api/get-all-sending-mails?email=tunamus@yippee.com", requestOptions)
+                .then((response) => response.json())
+                .then((result) => setMailList(result))
+                .catch((error) => console.error(error));
+        }
+
+        styleAdder();
+    }
+
+    function styleAdder(){
+        //for deleting all the active styles in the page
+        const activeTexts = document.getElementsByClassName("Active-Text-In-Main-Page");
+        Array.from(activeTexts).forEach((item)=>{
+            item.classList.remove("Active-Text-In-Main-Page")
+        })
+
+        if(!isMyMails){
+            const receivingText = document.getElementById("Receiving");
+            receivingText.classList.add("Active-Text-In-Main-Page");
+        }else{
+            const sendingText = document.getElementById("Sending");
+            sendingText.classList.add("Active-Text-In-Main-Page")
+        }
     }
 
     useEffect(()=>{
@@ -36,6 +65,10 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
         return () => clearInterval(interval);
 
     },[])
+
+    useEffect(()=>{
+        reloadMails();
+    },[isMyMails])
 
     const formatDate = (unformattedDate) => {
 
@@ -62,16 +95,19 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
             </div>
             <div className="Main-Table-Section">
                 <div className="Table-Header">
-                    <h2>My Mail</h2>
+                    <button id="Receiving" className="Text-Buttons" onClick={()=>setIsMyMails(false)}>My Mail</button>
+                    <button id="Sending" className="Text-Buttons" onClick={()=>setIsMyMails(true)}>Sended</button>
                     <button className="New-Mail-Button">+ New Mail</button>
                     <button onClick={reloadMails} className="Reload-Button">Reload Mails</button>
                 </div>
                 <div className="Mails-Section">
                     {mailList.map((mail)=>(
                         <MailListPropt 
+                        isMyMails= {isMyMails}
                         MailHeader={mail.dtomailHeader} 
                         MailTopic={mail.dtomailTopic} 
                         MailFrom={mail.dtomailFrom} 
+                        MailTo= {mail.dtomailTo}
                         MailDate = {formatDate(mail.dtomailDate)}
                         MailText={mail.dtomailDescription}/>
                     ))}

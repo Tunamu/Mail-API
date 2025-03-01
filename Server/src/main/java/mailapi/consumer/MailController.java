@@ -50,8 +50,13 @@ public class MailController {
         mailService.sendNewMail(mailDataDTO);
     }
 
-    @GetMapping("/get-all-mails")
-    public List<MailDataDTO> getAllMails(@RequestParam String email){
+    @GetMapping("/get-all-receiving-mails")
+    public List<MailDataDTO> getAllReceivingMails(@RequestParam String email){
         return mailService.getAllMailsFromThisUserMail(email);
+    }
+
+    @GetMapping("/get-all-sending-mails")
+    public List<MailDataDTO> getAllSendingMails(@RequestParam String email){
+        return mailService.getAllMailsFromUsersMail(email);
     }
 }

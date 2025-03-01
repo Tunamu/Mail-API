@@ -75,4 +75,13 @@ public class MailService {
         return mailDataDTOList;
     }
 
+    public List<MailDataDTO> getAllMailsFromUsersMail(String email){
+        List<MailData> tempMailData = mailRepository.findAllBySenderUserMailAdressOrderByMailSendDateDesc(email);
+        List<MailDataDTO> mailDataDTOList = new ArrayList<>();
+        for(MailData mailData : tempMailData){
+            mailDataDTOList.add(new MailDataDTO(mailData.getSenderUserMailAdress(),mailData.getReceiverUserMailAdress(),mailData.getMailSendDate(),mailData.getMailDataHeader(),mailData.getMailDataTopic(),mailData.getMailDataDescription()));
+        }
+        return mailDataDTOList;
+    }
+
 }

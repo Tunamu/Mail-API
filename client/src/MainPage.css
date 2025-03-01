@@ -43,7 +43,11 @@
     align-items:center;
 }
 
-.Table-Header h2{
+.Text-Buttons{
+    font-size: 24px;
+    font-weight: bold;
+    border: 0px;
+    background-color: antiquewhite;
     margin: 0px;
 }
 
@@ -60,4 +64,8 @@
     border: 2px solid rgb(183, 171, 155);
     padding: 10px;
     border-radius:10px 10px 0px 0px;
+}
+
+.Active-Text-In-Main-Page{
+    border-bottom: 3px solid black;
 }
