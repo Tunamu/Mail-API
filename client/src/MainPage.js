@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import MailListPropt from "./MailListPropt";
 import "./MainPage.css";
+import NewMail from "./NewMail";
 
 function MainPage( { email ,setEmail ,userName ,setUserName} ) {
 
     const[mailList,setMailList] = useState([]);
     const[isMyMails , setIsMyMails] = useState(false);
+    const[newMessage , setNewMessage] = useState(false);
 
     function handleLogout() {
         localStorage.removeItem("email");
@@ -73,6 +75,7 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
 
     return (
         <div className="MainPage">
+            {newMessage?<NewMail setNewMessage={setNewMessage}/>:<p style={{display:"none"}}></p>}
             <div className="Main-Top-Part">
                 <h2>Welcome {userName}!</h2>
                 <button onClick={handleLogout} className="Log-Out-Button">Logout</button>
@@ -81,7 +84,7 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
                 <div className="Table-Header">
                     <button id="Receiving" className="Text-Buttons" onClick={()=>setIsMyMails(false)}>My Mail</button>
                     <button id="Sending" className="Text-Buttons" onClick={()=>setIsMyMails(true)}>Sended</button>
-                    <button className="New-Mail-Button">+ New Mail</button>
+                    <button className="New-Mail-Button" onClick={()=>setNewMessage(true)}>+ New Mail</button>
                     <button onClick={reloadMails} className="Reload-Button">Reload Mails</button>
                 </div>
                 <div className="Mails-Section">
