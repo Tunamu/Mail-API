@@ -18,24 +18,18 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
 
         const requestOptions = {
             method: "GET",
-            redirect: "follow"
+            redirect: "follow",
         };
 
-        if(!isMyMails){
-            
-            fetch(`http://localhost:8080/custom-mail-api/get-all-receiving-mails?email=${email}`, requestOptions)
-                .then((response) => response.json())
-                .then((result) => setMailList(result))
-                .catch((error) => console.error(error));
+        const url = isMyMails
+            ? `http://localhost:8080/custom-mail-api/get-all-sending-mails?email=${email}`
+            : `http://localhost:8080/custom-mail-api/get-all-receiving-mails?email=${email}`;
 
-        }else{
-
-            fetch(`http://localhost:8080/custom-mail-api/get-all-sending-mails?email=${email}`, requestOptions)
-                .then((response) => response.json())
-                .then((result) => setMailList(result))
-                .catch((error) => console.error(error));
-        }
-
+        fetch(url, requestOptions)
+            .then((response) => response.json())
+            .then((result) => setMailList(result))
+            .catch((error) => console.error(error));
+        
         styleAdder();
     }
 
@@ -46,27 +40,19 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
             item.classList.remove("Active-Text-In-Main-Page")
         })
 
-        if(!isMyMails){
-            const receivingText = document.getElementById("Receiving");
-            receivingText.classList.add("Active-Text-In-Main-Page");
-        }else{
-            const sendingText = document.getElementById("Sending");
-            sendingText.classList.add("Active-Text-In-Main-Page")
-        }
+        const activeText = isMyMails ? document.getElementById("Sending") : document.getElementById("Receiving");
+        activeText.classList.add("Active-Text-In-Main-Page");
     }
 
     useEffect(()=>{
         reloadMails();
 
-        const interval = setInterval(reloadMails, 15000);
+        const interval = setInterval(() => {
+            reloadMails();
+        }, 15000);
 
-        return () => clearInterval(interval);
-
-    },[])
-
-    useEffect(()=>{
-        reloadMails();
-    },[isMyMails])
+        return () => clearInterval(interval); // Clear interval on component unmount
+    }, [isMyMails]); // This will trigger the effect whenever 'isMyMails' changes
 
     const formatDate = (unformattedDate) => {
 
@@ -101,6 +87,7 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
                 <div className="Mails-Section">
                     {mailList.map((mail)=>(
                         <MailListPropt 
+                        key={dtomailHeader}
                         isMyMails= {isMyMails}
                         MailHeader={mail.dtomailHeader} 
                         MailTopic={mail.dtomailTopic} 
