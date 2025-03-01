@@ -75,7 +75,7 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
 
     return (
         <div className="MainPage">
-            {newMessage?<NewMail setNewMessage={setNewMessage}/>:<p style={{display:"none"}}></p>}
+            {newMessage?<NewMail setNewMessage={setNewMessage} mailSenderAdress={email}/>:<p style={{display:"none"}}></p>}
             <div className="Main-Top-Part">
                 <h2>Welcome {userName}!</h2>
                 <button onClick={handleLogout} className="Log-Out-Button">Logout</button>
