@@ -35,6 +35,7 @@ function NewMail({setNewMessage, mailSenderAdress}) {
             // Eğer e-posta geçersizse fonksiyonu durduruyoruz
             if (!data) {
                 console.log("Must need a valid email address");
+                setNewMessage(false);
                 return;
             }
         } catch (error) {
