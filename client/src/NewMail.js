@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import "./NewMail.css";
 
-function NewMail({setNewMessage, mailSenderAdress}) {
+function NewMail({setNewMessage, mailSenderAdress,setInfoMessage}) {
 
     const[sendNewMailHeader,setSendNewMailHeader] = useState("");
     const[sendNewMailReceiverAdress ,setSendNewMailReceiverAdress] = useState("");
@@ -35,6 +35,7 @@ function NewMail({setNewMessage, mailSenderAdress}) {
             // Eğer e-posta geçersizse fonksiyonu durduruyoruz
             if (!data) {
                 console.log("Must need a valid email address");
+                setInfoMessage("Mail Send!!");
                 setNewMessage(false);
                 return;
             }
@@ -63,6 +64,7 @@ function NewMail({setNewMessage, mailSenderAdress}) {
         }
 
         setNewMessage(false);
+        setInfoMessage("Mail Send!!");
         //burada ekran kapanacak ve gönderildi diyem mesaj düşecek
 
     }

@@ -8,6 +8,8 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
     const[mailList,setMailList] = useState([]);
     const[isMyMails , setIsMyMails] = useState(false);
     const[newMessage , setNewMessage] = useState(false);
+    const[infoMessage,setInfoMessage] = useState(""); 
+    const [isInfoMessageVisible, setIsInfoMessageVisible] = useState(false);
 
     function handleLogout() {
         localStorage.removeItem("email");
@@ -73,9 +75,28 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
         return `${formattedTime} - ${formattedDate}`;
     };
 
+        useEffect(() => {
+            if (infoMessage) {
+                setIsInfoMessageVisible(true); 
+    
+                const timeout = setTimeout(() => {
+                    setIsInfoMessageVisible(false); 
+    
+                    setTimeout(() => {
+                        setInfoMessage(""); 
+                    }, 500); 
+                }, 2500);
+    
+                return () => clearTimeout(timeout);
+            }
+        }, [infoMessage]);
+
     return (
         <div className="MainPage">
-            {newMessage?<NewMail setNewMessage={setNewMessage} mailSenderAdress={email}/>:<p style={{display:"none"}}></p>}
+            {newMessage?<NewMail setNewMessage={setNewMessage} mailSenderAdress={email} setInfoMessage={setInfoMessage}/>:<p style={{display:"none"}}></p>}
+            {infoMessage && (
+                <div className={`Info-Message ${isInfoMessageVisible ? "show" : "hide"}`}>{infoMessage}</div>
+            )}
             <div className="Main-Top-Part">
                 <h2>Welcome {userName}!</h2>
                 <button onClick={handleLogout} className="Log-Out-Button">Logout</button>
