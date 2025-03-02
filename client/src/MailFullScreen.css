@@ -1,0 +1,39 @@
+.MainFullScreen{
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(250, 235, 215, 0.75);
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.Bigger-Mail-Part{
+    width: 1000px;
+    height: auto;
+    box-sizing: border-box;
+    background-color:rgb(183, 171, 155);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.Bigger-Mail-Header{
+    font-size: 24px;
+}
+
+.Bigger-Mail-Alt-Propt *,.Bigger-Mail-Alt-Propt,.Bigger-Mail-Topic{
+    margin: 10px 0px 0px 0px;
+    padding: 0px;
+    font-size: 20px;
+}
+
+.Bigger-Mail-Text{
+    margin-top: 20px;
+    font-size: 16px;
+}
+
