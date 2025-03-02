@@ -42,9 +42,5 @@
 .Mail-From{
     font-size: 14px;
     font-weight: 400;
-}
-
-
-.Mail-Text{
-    margin-top: 10px;
+    margin-top: 0px;
 }

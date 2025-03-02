@@ -26,10 +26,17 @@
     font-size: 24px;
 }
 
-.Bigger-Mail-Alt-Propt *,.Bigger-Mail-Alt-Propt,.Bigger-Mail-Topic{
+.Bigger-Mail-Alt-Propt,.Bigger-Mail-Topic{
     margin: 10px 0px 0px 0px;
     padding: 0px;
     font-size: 20px;
+}
+
+.Bigger-Mail-Alt-Propt p{
+    padding: 0px;
+    margin: 0px;
+    font-size: 20px;
+    background-color: rgba(250, 235, 215, 0.0);
 }
 
 .Bigger-Mail-Text{
@@ -37,3 +44,12 @@
     font-size: 16px;
 }
 
+.Bigger-Mail-Part *{
+    background-color: rgba(250, 235, 215, 0.5);
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.Top-Line{
+    background-color: rgb(183, 171, 155);
+}
