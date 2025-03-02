@@ -88,6 +88,7 @@ function MainPage( { email ,setEmail ,userName ,setUserName} ) {
                     <button onClick={reloadMails} className="Reload-Button">Reload Mails</button>
                 </div>
                 <div className="Mails-Section">
+                    {mailList.length==[0]?<p className="No-Mail-Section">No Mail Yet.</p>:<p style={{display:"none"}}></p>}
                     {mailList.map((mail)=>(
                         <MailListPropt 
                         
