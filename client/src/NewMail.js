@@ -24,17 +24,14 @@ function NewMail({setNewMessage, mailSenderAdress,setInfoMessage}) {
         };
         
         try {
-            // fetch işlemini await ile bekliyoruz
+
             const response = await fetch(
                 `http://localhost:8080/custom-mail-api/is-any-user-with-this-email?email=${sendNewMailReceiverAdress}`,
                 requestOptionsForMailTester
             );
             const data = await response.json();
-            console.log("Mail validation response:", data);
 
-            // Eğer e-posta geçersizse fonksiyonu durduruyoruz
             if (!data) {
-                console.log("Must need a valid email address");
                 setInfoMessage("Mail Send!!");
                 setNewMessage(false);
                 return;
@@ -49,8 +46,6 @@ function NewMail({setNewMessage, mailSenderAdress,setInfoMessage}) {
             method: "POST",
             redirect: "follow"
         };
-
-        console.log("Valid mail propts!!!!!!");
         
         try {
             const response = await fetch(
@@ -65,7 +60,6 @@ function NewMail({setNewMessage, mailSenderAdress,setInfoMessage}) {
 
         setNewMessage(false);
         setInfoMessage("Mail Send!!");
-        //burada ekran kapanacak ve gönderildi diyem mesaj düşecek
 
     }
 
