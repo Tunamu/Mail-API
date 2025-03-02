@@ -7,14 +7,17 @@ function NewMail({setNewMessage, mailSenderAdress,setInfoMessage}) {
     const[sendNewMailReceiverAdress ,setSendNewMailReceiverAdress] = useState("");
     const[sendNewMailTopic ,setSendNewMailTopic] = useState("");
     const[sendNewMailText ,setSendNewMailText] = useState("");
+    const[sendNewMailErrorMessage, setSendNewMailErrorMessage] = useState("");
 
     async function sendNewMail(){
-        if(!sendNewMailHeader){
-            console.log("Must need header");
+
+        if(!sendNewMailReceiverAdress){
+            setSendNewMailErrorMessage("A mail have to receiving e-mail adress!!");
             return;
         }
-        if(!sendNewMailReceiverAdress){
-            console.log("Must need e mail adress");
+
+        if(!sendNewMailHeader){
+            setSendNewMailErrorMessage("A mail have to header!!");
             return;
         }
 
@@ -79,6 +82,7 @@ return (
             <input className="New-Mail-Receiver-Mail-Adress" placeholder="Email Adress" onKeyDown={sendTriggerFunc} onChange={(e)=> setSendNewMailReceiverAdress(e.target.value)}/>
             <input className="New-Mail-Topic" placeholder="Topic" onKeyDown={sendTriggerFunc} onChange={(e)=> setSendNewMailTopic(e.target.value)}/>
             <textarea className="New-Mail-Text" placeholder="write here..." onKeyDown={sendTriggerFunc} onChange={(e)=> setSendNewMailText(e.target.value)}/>
+            <p className='Send-Message-Error-Text' style={{display: sendNewMailErrorMessage?"block":"none"}}>{sendNewMailErrorMessage}</p>
             <button className="Mail-Send-Button" onClick={sendNewMail}>Send</button>
         </div> 
     </div>
